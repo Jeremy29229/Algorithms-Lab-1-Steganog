@@ -1,0 +1,17 @@
+This algorithm uses the Sieve of Eratosthenes to generate a list of primes, as required. When encoding an image with a secret message, this algorithm takes each character of the message, converts it to an int and subtracts 32 to get the hidden number representation of the character. The next prime pixel in the image is found with the Sieve of Eratosthenes algorithm. Then, the binary representation of secret number is split evenly into the two lowers bits of the selected pixel's RGB values. The lower bits are cleared using the and bitwise function and the secret number's highest 4 bits are shift to the lowest two bits of the borrowed colors in the pixel. The selected prime pixel is then replaced with the newly modify one.
+
+In order to decode a secret message each prime pixel in the image is processed. Each color in the RGB of the select pixel is stripped of its higher bits using the and bitwise function so only the two lowest remain. The red and green color are then bit shifted to reveal the hidden secret number. Then 32 is added and the resulting int is converted to a char and added to a string. The resulting string will contain the hidden message.
+
+I did not receive any direct help with this lab. However, I did hear that bit shifting could be helpful in this lab from idle talking when this lab was first announced.
+
+n = width * height
+two loops non nested (one for encode, one for decoding) -> 2n
+limit n -> infinity 2n / n
+limit n -> infinity 2
+therefore O(n)
+
+I separated my testing in to encoding and decoding a picture since both operations are not always required when using this algorithm. If someone gives me an encoded picture I only need to decode and if I want to give someone an encoded picture I do not need to read the message (unless I am testing the code).
+
+ I tested each by finding the system time before and after the functions were run. While not has extensive has profiling each individual function this testing should give me a good idea how effective the algorithm currently is and how much future improves help or hurt each part of the program. I tested sized of 50 x 50 to 250 x 250 increments of 50. The test message was always 50 characters long as a controlled variable. Please see attach excel document for table data.
+ 
+ In the future I could see adding an escape character to the decoding process to improve efficiency. This change would not change the efficiency class of the algorithms but could potential make it n / 2 instead of n for the decoders efficiency.
